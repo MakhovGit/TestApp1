@@ -1,13 +1,13 @@
-package com.example.app.testapp1.ui.screens.main_screen
+package com.example.app.testapp1.ui.screens.home_screen
 
 import com.example.app.testapp1.ui.base.reducer.ReducerAbstract
 
-class MainScreenReducer : ReducerAbstract<MainScreenContract.State, Any>() {
+class HomeScreenReducer : ReducerAbstract<HomeScreenContract.State, Any>() {
 
     override fun reduce(
-        currentState: MainScreenContract.State,
+        currentState: HomeScreenContract.State,
         result: Any
-    ): MainScreenContract.State {
+    ): HomeScreenContract.State {
         return when (result) {
             is Any -> currentState
             else -> currentState

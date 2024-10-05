@@ -1,9 +1,9 @@
-package com.example.app.testapp1.ui.screens.main_screen
+package com.example.app.testapp1.ui.screens.home_screen
 
 import com.example.app.testapp1.ui.base.ViewEvent
 import com.example.app.testapp1.ui.base.ViewState
 
-class MainScreenContract {
+class HomeScreenContract {
     data class State(
         val isDataLoading: Boolean = false
     ) : ViewState

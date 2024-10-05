@@ -1,7 +1,35 @@
 <resources>
 
     <!-- Commons begin -->
-    <string name="app_name">Single_Compose</string>
+    <string name="app_name">TestApp1</string>
     <!-- Commons end -->
+
+    <!-- HomeScreen begin -->
+    <string name="home_screen_title">HOME</string>
+    <!-- HomeScreen end -->
+
+    <!-- DevsScreen begin -->
+    <string name="devs_screen_title">DEVS</string>
+    <!-- DevsScreen end -->
+
+    <!-- ApparatusesScreen begin -->
+    <string name="apparatuses_screen_title">APPARATUSES</string>
+    <!-- ApparatusesScreen end -->
+
+    <!-- MessagesScreen begin -->
+    <string name="messages_screen_title">MESSAGES</string>
+    <!-- MessagesScreen end -->
+
+    <!-- StatisticsScreen begin -->
+    <string name="statistics_screen_title">STATISTICS</string>
+    <!-- StatisticsScreen end -->
+
+    <!-- SettingsScreen begin -->
+    <string name="settings_screen_title">SETTINGS</string>
+    <!-- SettingsScreen end -->
+
+    <!-- Dummies begin -->
+    <string name="dummies_description">UNDER CONSTRUCTION</string>
+    <!-- Dummies end -->
 
 </resources>
