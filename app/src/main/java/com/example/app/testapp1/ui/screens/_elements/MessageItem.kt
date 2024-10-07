@@ -1,13 +1,13 @@
 package com.example.app.testapp1.ui.screens._elements
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,25 +18,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.testapp1.R
-import com.example.app.testapp1.model.DeviceInfo
+import com.example.app.testapp1.model.TextMessage
 import com.example.app.testapp1.utils.MAX_WEIGHT
 import com.example.app.testapp1.utils.ONE
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @Composable
-fun DeviceInfoItem(
-    info: DeviceInfo,
-    onClick: (deviceInfo: DeviceInfo) -> Unit
-) {
+fun MessageItem(message: TextMessage, isSent: Boolean) {
     Surface(
         shape = RoundedCornerShape(20),
         border = BorderStroke(Int.ONE.dp, Color.Gray),
-        modifier = Modifier
-            .fillMaxSize()
-            .clickable {
-                onClick(info)
-            }
+        modifier = Modifier.fillMaxSize()
     ) {
-        val fontSize = dimensionResource(R.dimen.device_info_item_font_size).value.sp
+        val localDateTime =
+            LocalDateTime.ofInstant(Instant.ofEpochMilli(message.dateTime), ZoneId.systemDefault())
+        val dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val formattedDate = localDateTime.format(dateFormatter)
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+        val formattedTime = localDateTime.format(timeFormatter)
+        val fontSize = dimensionResource(R.dimen.message_item_font_size).value.sp
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -52,12 +55,12 @@ fun DeviceInfoItem(
                     Text(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = fontSize,
-                        text = "Name:"
+                        text = "Id:"
                     )
                     Text(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = fontSize,
-                        text = "Status:"
+                        text = "Date:"
                     )
                 }
                 Column(
@@ -67,11 +70,11 @@ fun DeviceInfoItem(
                 ) {
                     Text(
                         fontSize = fontSize,
-                        text = info.name
+                        text = message.id.toString()
                     )
                     Text(
                         fontSize = fontSize,
-                        text = info.status.status
+                        text = formattedDate
                     )
                 }
                 Column(
@@ -81,12 +84,13 @@ fun DeviceInfoItem(
                     Text(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = fontSize,
-                        text = "Type:"
+                        text = if (isSent) "Recipient:" else "Author:"
                     )
+
                     Text(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = fontSize,
-                        text = "MAC:"
+                        text = "Time:"
                     )
                 }
                 Column(
@@ -96,30 +100,22 @@ fun DeviceInfoItem(
                 ) {
                     Text(
                         fontSize = fontSize,
-                        text = info.type
+                        text = if (isSent) message.recipient else message.author
                     )
                     Text(
                         fontSize = fontSize,
-                        text = info.mac
+                        text = formattedTime
                     )
                 }
             }
-            Row(
+            HorizontalDivider()
+            Text(
+                fontSize = fontSize,
+                text = message.text,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(R.dimen.common_padding_10))
-            ) {
-                Text(
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = fontSize,
-                    text = "Subscriptions:"
-                )
-                HorizontalSpacer(dimensionResource(R.dimen.common_padding_5))
-                Text(
-                    fontSize = fontSize,
-                    text = info.subscriptions
-                )
-            }
+            )
         }
     }
 }

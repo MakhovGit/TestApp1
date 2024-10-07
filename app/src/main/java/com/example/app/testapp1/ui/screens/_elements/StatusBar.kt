@@ -10,7 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.example.app.testapp1.R
 import com.example.app.testapp1.model.DeviceStatus
 
 @Composable
@@ -19,7 +20,7 @@ fun StatusBar(
     onStatusChange: (status: DeviceStatus) -> Unit
 ) {
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.common_space_5)),
         modifier = Modifier.fillMaxWidth()
     ) {
         DeviceStatus.entries.forEach { status ->

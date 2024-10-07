@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.app.testapp1.R
+import com.example.app.testapp1.utils.MAX_WEIGHT
 
 @Composable
 fun Dummy(title: String, navController: NavHostController) {
@@ -29,7 +30,7 @@ fun Dummy(title: String, navController: NavHostController) {
                 .fillMaxSize()
                 .padding(dimensionResource(R.dimen.common_padding_10))
         ) {
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(Float.MAX_WEIGHT))
             Text(
                 text = title,
                 fontSize = dimensionResource(R.dimen.dummies_title_font_size).value.sp,
@@ -44,7 +45,7 @@ fun Dummy(title: String, navController: NavHostController) {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(Float.MAX_WEIGHT))
             BottomNavigationBar(navController = navController)
         }
     }

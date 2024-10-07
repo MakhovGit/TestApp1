@@ -12,13 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,6 +42,8 @@ import com.example.app.testapp1.ui.screens._elements.StatusBar
 import com.example.app.testapp1.ui.screens._elements.TopBar
 import com.example.app.testapp1.ui.screens._elements.VerticalSpacer
 import com.example.app.testapp1.utils.EMPTY
+import com.example.app.testapp1.utils.MAX_WEIGHT
+import com.example.app.testapp1.utils.ONE
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -76,15 +77,15 @@ fun DevsScreen(
                                 currentStatus = status
                             }
                         )
-                        VerticalSpacer(5.dp)
+                        VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                         HorizontalDivider()
-                        VerticalSpacer(5.dp)
+                        VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                         if (deviceInfo.isNotEmpty()) {
                             LazyColumn(
-                                contentPadding = PaddingValues(5.dp),
-                                verticalArrangement = Arrangement.spacedBy(10.dp),
+                                contentPadding = PaddingValues(dimensionResource(R.dimen.common_padding_5)),
+                                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.common_space_10)),
                                 modifier = Modifier
-                                    .weight(1f)
+                                    .weight(Float.MAX_WEIGHT)
                                     .fillMaxWidth()
                             ) {
                                 deviceInfo.forEach { info ->
@@ -99,23 +100,23 @@ fun DevsScreen(
                             Box(
                                 contentAlignment = Alignment.Center,
                                 modifier = Modifier
-                                    .weight(1f)
+                                    .weight(Float.MAX_WEIGHT)
                                     .fillMaxWidth()
                             ) {
                                 Text(
-                                    fontSize = 25.sp,
+                                    fontSize = dimensionResource(R.dimen.devs_screen_big_no_data_font_size).value.sp,
                                     color = Color.Gray,
                                     text = "No data"
                                 )
                             }
                         }
-                        VerticalSpacer(5.dp)
+                        VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                         HorizontalDivider()
-                        VerticalSpacer(5.dp)
+                        VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                         Box(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier
-                                .weight(1f)
+                                .weight(Float.MAX_WEIGHT)
                                 .fillMaxWidth()
                         ) {
                             Row(
@@ -125,11 +126,11 @@ fun DevsScreen(
                                     verticalArrangement = Arrangement.Center,
                                     modifier = Modifier
                                         .fillMaxHeight()
-                                        .padding(5.dp)
+                                        .padding(dimensionResource(R.dimen.common_padding_5))
                                 ) {
                                     if (currentDevice != null) {
                                         Text(
-                                            fontSize = 23.sp,
+                                            fontSize = dimensionResource(R.dimen.devs_screen_device_name_font_size).value.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             text = currentDevice?.name ?: "unknown"
                                         )
@@ -139,7 +140,7 @@ fun DevsScreen(
                                         )
                                         Text(
                                             text = currentDevice?.type ?: "unknown",
-                                            modifier = Modifier.padding(start = 20.dp)
+                                            modifier = Modifier.padding(start = dimensionResource(R.dimen.common_padding_20))
                                         )
                                         Text(
                                             fontWeight = FontWeight.SemiBold,
@@ -147,7 +148,7 @@ fun DevsScreen(
                                         )
                                         Text(
                                             text = currentDevice?.status?.status ?: "unknown",
-                                            modifier = Modifier.padding(start = 20.dp)
+                                            modifier = Modifier.padding(start = dimensionResource(R.dimen.common_padding_20))
                                         )
                                         Text(
                                             fontWeight = FontWeight.SemiBold,
@@ -155,7 +156,7 @@ fun DevsScreen(
                                         )
                                         Text(
                                             text = currentDevice?.mac ?: "unknown",
-                                            modifier = Modifier.padding(start = 20.dp)
+                                            modifier = Modifier.padding(start = dimensionResource(R.dimen.common_padding_20))
                                         )
                                         Text(
                                             fontWeight = FontWeight.SemiBold,
@@ -163,36 +164,38 @@ fun DevsScreen(
                                         )
                                         Text(
                                             text = currentDevice?.subscriptions ?: "unknown",
-                                            modifier = Modifier.padding(start = 20.dp)
+                                            modifier = Modifier.padding(start = dimensionResource(R.dimen.common_padding_20))
                                         )
                                     } else {
                                         Text(
                                             textAlign = TextAlign.Center,
-                                            fontSize = 20.sp,
+                                            fontSize = dimensionResource(R.dimen.devs_screen_little_no_data_font_size).value.sp,
                                             color = Color.Gray,
                                             text = "No data",
                                         )
                                     }
                                 }
-                                HorizontalSpacer(10.dp)
+                                HorizontalSpacer(dimensionResource(R.dimen.common_space_10))
                                 Column {
-                                    TextField(
-                                        colors = TextFieldDefaults.colors().copy(
-                                            focusedContainerColor = Color.White,
-                                            unfocusedContainerColor = Color.White,
-                                            focusedIndicatorColor = Color.White,
-                                            unfocusedIndicatorColor = Color.White
-                                        ),
+                                    BasicTextField(
                                         value = text,
                                         onValueChange = { newValue -> text = newValue },
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .weight(1f)
-                                            .border(color = Color.Gray, width = 1.dp),
-
+                                            .weight(Float.MAX_WEIGHT)
+                                            .border(color = Color.Gray, width = Int.ONE.dp),
+                                        decorationBox = { innerTextField ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(dimensionResource(R.dimen.common_text_field_padding))
+                                            ) {
+                                                innerTextField()
+                                            }
+                                        },
                                         singleLine = false
                                     )
-                                    VerticalSpacer(5.dp)
+                                    VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                                     OutlinedButton(
                                         shape = RoundedCornerShape(10),
                                         onClick = { },
@@ -206,9 +209,9 @@ fun DevsScreen(
                                 }
                             }
                         }
-                        VerticalSpacer(5.dp)
+                        VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                         HorizontalDivider()
-                        VerticalSpacer(5.dp)
+                        VerticalSpacer(dimensionResource(R.dimen.common_space_5))
                         BottomNavigationBar(navController = navController)
                     }
                 }

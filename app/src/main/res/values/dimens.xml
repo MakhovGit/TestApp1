@@ -3,7 +3,11 @@
 
     <!-- Commons begin -->
     <dimen name="common_space_10">10dp</dimen>
+    <dimen name="common_space_5">5dp</dimen>
+    <dimen name="common_padding_5">5dp</dimen>
     <dimen name="common_padding_10">10dp</dimen>
+    <dimen name="common_padding_20">20dp</dimen>
+    <dimen name="common_text_field_padding">4dp</dimen>
     <!-- Commons end -->
 
     <!-- BottomNavigation Bar begin -->
@@ -18,5 +22,19 @@
     <dimen name="dummies_title_font_size">30sp</dimen>
     <dimen name="dummies_description_font_size">20sp</dimen>
     <!-- Dummies end -->
+
+    <!-- DeviceInfoItem begin -->
+    <dimen name="device_info_item_font_size">12sp</dimen>
+    <!-- DeviceInfoItem end -->
+
+    <!-- MessageItem begin -->
+    <dimen name="message_item_font_size">12sp</dimen>
+    <!-- MessageItem end -->
+
+    <!-- DevsScreen begin -->
+    <dimen name="devs_screen_big_no_data_font_size">25sp</dimen>
+    <dimen name="devs_screen_little_no_data_font_size">20sp</dimen>
+    <dimen name="devs_screen_device_name_font_size">23sp</dimen>
+    <!-- DevsScreen end -->
 
 </resources>

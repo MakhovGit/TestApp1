@@ -17,6 +17,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.app.testapp1.R
 import com.example.app.testapp1.ui.navigation.NavigationItem
+import com.example.app.testapp1.utils.MAX_WEIGHT
+import com.example.app.testapp1.utils.ONE
 
 @Composable
 fun NavigationBar(navList: List<NavigationItem>, navController: NavHostController) {
@@ -28,7 +30,7 @@ fun NavigationBar(navList: List<NavigationItem>, navController: NavHostControlle
     ) {
         navList.forEach { item ->
             OutlinedButton(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(Float.MAX_WEIGHT),
                 onClick = {
                     navController.navigate(item.route) {
                         navController.graph.startDestinationRoute?.let { route ->
@@ -43,7 +45,7 @@ fun NavigationBar(navList: List<NavigationItem>, navController: NavHostControlle
             ) {
                 Text(
                     text = item.name,
-                    maxLines = 1,
+                    maxLines = Int.ONE,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = dimensionResource(R.dimen.bottom_navigation_bar_font_size).value.sp,
                     color = if (currentRoute == item.route) Color.Blue else Color.DarkGray
