@@ -9,13 +9,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.example.app.testapp1.R
 import com.example.app.testapp1.ui.screens._elements.Dummy
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen(
-    viewModel: HomeScreenViewModel = koinViewModel(),
-    navController: NavHostController
-) {
+fun HomeScreen(navController: NavHostController) {
     Scaffold(
         content = { padding ->
             Box(modifier = Modifier.padding(padding)) {

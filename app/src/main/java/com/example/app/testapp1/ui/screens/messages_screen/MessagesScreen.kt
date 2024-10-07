@@ -9,12 +9,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.example.app.testapp1.R
 import com.example.app.testapp1.ui.screens._elements.Dummy
+import com.example.app.testapp1.ui.screens._elements.TopBar
 
 @Composable
 fun MessagesScreen(
     navController: NavHostController
 ) {
     Scaffold(
+        topBar = { TopBar("Messages") },
         content = { padding ->
             Box(modifier = Modifier.padding(padding)) {
                 Dummy(

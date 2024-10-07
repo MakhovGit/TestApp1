@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -43,6 +43,8 @@ fun NavigationBar(navList: List<NavigationItem>, navController: NavHostControlle
             ) {
                 Text(
                     text = item.name,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     fontSize = dimensionResource(R.dimen.bottom_navigation_bar_font_size).value.sp,
                     color = if (currentRoute == item.route) Color.Blue else Color.DarkGray
                 )
@@ -64,9 +66,7 @@ fun BottomNavigationBar(navController: NavHostController) {
         NavigationItem.SettingsScreen
     )
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(dimensionResource(R.dimen.common_padding_10))
+        modifier = Modifier.fillMaxWidth()
     ) {
         NavigationBar(navList = navList1, navController = navController)
         NavigationBar(navList = navList2, navController = navController)

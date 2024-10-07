@@ -10,6 +10,10 @@
     <dimen name="bottom_navigation_bar_font_size">11sp</dimen>
     <!-- BottomNavigation Bar end -->
 
+    <!-- Top Bar begin -->
+    <dimen name="top_bar_font_size">22sp</dimen>
+    <!-- Top Bar end -->
+
     <!-- Dummies begin -->
     <dimen name="dummies_title_font_size">30sp</dimen>
     <dimen name="dummies_description_font_size">20sp</dimen>
